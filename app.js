@@ -17,7 +17,7 @@ app.post('/', function (req, res) {
 app.post('/intent', async (req, res) => {
     if(!req.body.intent) return res.send('No intent object passed...')
     const paymentIntent = await stripe.paymentIntents.create(req.body.intent);
-    res.json({client_secret: paymentIntent.client_secret});
+    res.json({intent: paymentIntent});
 
 });
 
