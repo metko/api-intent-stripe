@@ -6,8 +6,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 const stripe = require('stripe')('sk_test_51H4SxWLVOH5lsckxVgT49pMO5oVK88TqSBFQGvffoJZYFyYezMLMTwWiKw4l00tAmbotK6DOtTTGUbukpUJi3A9U00esYnIMWk');
 
 app.get('/', async (req, res) => {
- console.log('home')
- 
+ res.send('homepage!')
  return "hello"
 });
 
