@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+var fs = require('fs')
+var https = require('https')
 const stripe = require('stripe')('sk_test_51H4SxWLVOH5lsckxVgT49pMO5oVK88TqSBFQGvffoJZYFyYezMLMTwWiKw4l00tAmbotK6DOtTTGUbukpUJi3A9U00esYnIMWk');
 
 app.get('/', async (req, res) => {
@@ -23,6 +25,14 @@ app.post('/intent', async (req, res) => {
 
 });
 
-app.listen(80, () => {
-  console.log('Running on localhost');
-});
+// app.listen(80, () => {
+//   console.log('Running on localhost');
+// });
+
+https.createServer({
+  key: fs.readFileSync('~/server.key'),
+  cert: fs.readFileSync('~/server.cert')
+}, app)
+.listen(80, function () {
+  console.log('Go to https://localhost:3000/')
+})
