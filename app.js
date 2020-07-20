@@ -20,10 +20,10 @@ app.post('/', function (req, res) {
 });
 
 app.post('/intent', async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     if(!req.body.intent) return res.send('No intent object passed...')
     const paymentIntent = await stripe.paymentIntents.create(req.body.intent);
     res.json({intent: paymentIntent});
-
 });
 
 // app.listen(80, () => {
