@@ -30,8 +30,8 @@ app.post('/intent', async (req, res) => {
 // });
 
 https.createServer({
-  key: fs.readFileSync('~/server.key'),
-  cert: fs.readFileSync('~/server.cert')
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
 }, app)
 .listen(80, function () {
   console.log('Go to https://localhost:3000/')
