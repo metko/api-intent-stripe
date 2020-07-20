@@ -34,6 +34,6 @@ https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app)
-.listen(80, function () {
+.listen(443, function () {
   console.log('Go to https://localhost:3000/')
 })
