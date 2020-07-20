@@ -10,6 +10,17 @@ const http = require('http');
 var https = require('https')
 const stripe = require('stripe')('sk_test_51H4SxWLVOH5lsckxVgT49pMO5oVK88TqSBFQGvffoJZYFyYezMLMTwWiKw4l00tAmbotK6DOtTTGUbukpUJi3A9U00esYnIMWk');
 
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/chain.pem', 'utf8');
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+
 app.get('/', async (req, res) => {
  res.send('homepage!')
  return "hello"
@@ -31,10 +42,7 @@ app.post('/intent', async (req, res) => {
 //   console.log('Running on localhost');
 // });
 http.createServer(app).listen(8080);
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
+https.createServer(credentials, app)
 .listen(443, function () {
   console.log('Go to https://localhost:3000/')
 })
