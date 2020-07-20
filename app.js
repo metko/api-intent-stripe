@@ -12,9 +12,9 @@ const stripe = require('stripe')('sk_test_51H4SxWLVOH5lsckxVgT49pMO5oVK88TqSBFQG
 
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/intentffme.hopto.org/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/intentffme.hopto.org/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/intentffme.hopto.org/chain.pem', 'utf8');
 const credentials = {
 	key: privateKey,
 	cert: certificate,
