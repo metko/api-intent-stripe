@@ -19,8 +19,9 @@ app.post('/', function (req, res) {
     console.log(req.body.intent)
 });
 
+app.options('/intent', cors())
 app.post('/intent', async (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    //res.header('Access-Control-Allow-Origin', '*');
     if(!req.body.intent) return res.send('No intent object passed...')
     const paymentIntent = await stripe.paymentIntents.create(req.body.intent);
     res.json({intent: paymentIntent});
