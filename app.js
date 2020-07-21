@@ -11,9 +11,9 @@ var https = require('https')
 const stripe = require('stripe')('sk_test_51H4SxWLVOH5lsckxVgT49pMO5oVK88TqSBFQGvffoJZYFyYezMLMTwWiKw4l00tAmbotK6DOtTTGUbukpUJi3A9U00esYnIMWk');
 
 // Certificate
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/'+process.env.URL_API+'/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/'+process.env.URL_API+'/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/'+process.env.URL_API+'/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/'+process.env.DOMAIN_URL+'/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/'+process.env.DOMAIN_URL+'/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/'+process.env.DOMAIN_URL+'/chain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,
@@ -44,5 +44,5 @@ app.use(process.env.PREFIX_API_URL, router)
 http.createServer(app).listen(8080);
 
 https.createServer(credentials, app).listen(443, () => {
-  console.log('Server running at '+process.env.URL+process.env.PREFIX_API_URL)
+  console.log('Server running at '+process.env.DOMAIN_URL+process.env.PREFIX_API_URL)
 })
